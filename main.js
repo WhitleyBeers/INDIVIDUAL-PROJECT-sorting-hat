@@ -24,7 +24,6 @@ const cardsOnDom = (array) => {
   let domString = "";
   for (const member of array) {
     domString += `<div class="card" style="width: 18rem;">
-    <img src="${member.image}" class="card-img-top" alt="...">
     <div class="card-body">
       <p class="card-text">${member.name}</p>
       <p class="card-text">${member.house}</p>
@@ -33,6 +32,19 @@ const cardsOnDom = (array) => {
   </div>`;
   }
   renderToDom("#studentContainer", domString);
+}
+
+const voldysArmy = (array) => {
+  let domString = "";
+  for (const member of array) {
+    domString += `<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <p class="card-text">${member.name}</p>
+      <p class="card-text">${member.house}</p>
+    </div>
+  </div>`;
+  }
+  renderToDom("#expelledContainer", domString);
 }
 
 const createStudent = (e) => {
@@ -52,7 +64,7 @@ const createStudent = (e) => {
 // EVENTS
 sortButton.addEventListener('click', () => {
   let domString = `<form id="submitStudent"><div class="form-floating mb-3 col-sm-5">
-  <input type="text" class="form-control" id="studentName" placeholder="student name">
+  <input type="text" class="form-control" id="studentName" placeholder="student name" required>
   <label for="floatingInput">Please type your name here</label>
   </div>
   <button type="submit" class="btn btn-primary" id="submit">Submit</button></form>`;
@@ -60,3 +72,22 @@ sortButton.addEventListener('click', () => {
 })
 
 form.addEventListener('submit', createStudent);
+
+
+// 1. Target the app div
+//studentCards
+
+// 2. Add an event listener to capture clicks
+
+studentCards.addEventListener('click', (e) => {
+  if (e.target.id.includes("delete")) {
+    const [, id] = e.target.id.split("--");
+    
+    const index = students.findIndex(e => e.id === Number(id));
+    let removed = students.splice(index, 1);
+    expelledStudents.concat(removed);
+
+    cardsOnDom(students);
+    voldysArmy(expelledStudents);
+  }
+});
