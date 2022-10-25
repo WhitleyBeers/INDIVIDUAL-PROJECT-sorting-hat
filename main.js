@@ -120,3 +120,10 @@ ravenclaw.addEventListener('click', () => {
 showAll.addEventListener('click', () => {
   cardsOnDom(students);
 })
+
+const startApp = () => {
+  cardsOnDom(students);
+  cardsOnDom(expelledStudents);
+}
+
+startApp();
