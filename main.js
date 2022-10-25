@@ -4,9 +4,6 @@ const students = [];
 const houses = ['Gryffindor', 'Ravenclaw', 'Slytherin', 'Hufflepuff'];
 const expelledStudents = [];
 
-// RANDOMIZE
-houses[Math.floor(Math.random() * houses.length)]
-
 // QUERY SELECTORS
 const studentCards = document.querySelector('#studentContainer')
 const sortButton = document.querySelector('#sort-me');
@@ -38,9 +35,9 @@ const voldysArmy = (array) => {
   let domString = "";
   for (const member of array) {
     domString += `<div class="card" style="width: 18rem;">
+    <img src="https://icon2.cleanpng.com/20180805/cji/kisspng-tattoo-clip-art-tattoo-clip-art-portable-network-g-poison-snake-tattoo-tattoos-skull-skulls-5b66e26356fe81.0544486015334692833563.jpg" class="card-img-top" alt="Death eater symbol">
     <div class="card-body">
-      <p class="card-text">${member.name}</p>
-      <p class="card-text">${member.house}</p>
+      <p class="card-text">${member.name} has been recruited to be a Death Eater!</p>
     </div>
   </div>`;
   }
@@ -73,21 +70,14 @@ sortButton.addEventListener('click', () => {
 
 form.addEventListener('submit', createStudent);
 
-
-// 1. Target the app div
-//studentCards
-
-// 2. Add an event listener to capture clicks
-
 studentCards.addEventListener('click', (e) => {
   if (e.target.id.includes("delete")) {
     const [, id] = e.target.id.split("--");
     
     const index = students.findIndex(e => e.id === Number(id));
     let removed = students.splice(index, 1);
-    expelledStudents.concat(removed);
 
     cardsOnDom(students);
-    voldysArmy(expelledStudents);
+    voldysArmy(expelledStudents.concat(removed));
   }
 });
