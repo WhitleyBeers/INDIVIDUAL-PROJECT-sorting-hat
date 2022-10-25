@@ -10,6 +10,11 @@ const sortButton = document.querySelector('#sort-me');
 const form = document.querySelector('#formContainer');
 const expelledCards = document.querySelector('#expelledContainer')
 const submitButton = document.querySelector('#submit')
+const slytherin = document.querySelector('#slytherin');
+const gryffindor = document.querySelector('#gryffindor');
+const hufflepuff = document.querySelector('#hufflepuff');
+const ravenclaw = document.querySelector('#ravenclaw');
+const showAll = document.querySelector('#showAll');
 
 // FUNCTIONS
 const renderToDom = (divId, htmlToRender) => {
@@ -35,9 +40,8 @@ const voldysArmy = (array) => {
   let domString = "";
   for (const member of array) {
     domString += `<div class="card" style="width: 18rem;">
-    <img src="https://icon2.cleanpng.com/20180805/cji/kisspng-tattoo-clip-art-tattoo-clip-art-portable-network-g-poison-snake-tattoo-tattoos-skull-skulls-5b66e26356fe81.0544486015334692833563.jpg" class="card-img-top" alt="Death eater symbol">
     <div class="card-body">
-      <p class="card-text">${member.name} has been recruited to be a Death Eater!</p>
+      <p class="card-text">${member.name} has joined the Death Eaters!</p>
     </div>
   </div>`;
   }
@@ -58,6 +62,16 @@ const createStudent = (e) => {
   cardsOnDom(students);
 }
 
+function filter(array, typeString) {
+  const studentArray = [];
+  for (const student of array) {
+    if (student.house === typeString) {
+      studentArray.push(student);
+    }
+  }
+  return studentArray;
+}
+
 // EVENTS
 sortButton.addEventListener('click', () => {
   let domString = `<form id="submitStudent"><div class="form-floating mb-3 col-sm-5">
@@ -73,11 +87,36 @@ form.addEventListener('submit', createStudent);
 studentCards.addEventListener('click', (e) => {
   if (e.target.id.includes("delete")) {
     const [, id] = e.target.id.split("--");
-    
+
     const index = students.findIndex(e => e.id === Number(id));
-    let removed = students.splice(index, 1);
+    const removed = students.splice(index, 1);
+    expelledStudents.push(removed[0]);
 
     cardsOnDom(students);
-    voldysArmy(expelledStudents.concat(removed));
+    voldysArmy(expelledStudents);
   }
 });
+
+slytherin.addEventListener('click', () => {
+  const snakes = filter(students, 'Slytherin')
+  cardsOnDom(snakes);
+})
+
+gryffindor.addEventListener('click', () => {
+  const griffins = filter(students, 'Gryffindor')
+  cardsOnDom(griffins);
+})
+
+hufflepuff.addEventListener('click', () => {
+  const badgers = filter(students, 'Hufflepuff')
+  cardsOnDom(badgers);
+})
+
+ravenclaw.addEventListener('click', () => {
+  const ravens = filter(students, 'Ravenclaw')
+  cardsOnDom(ravens);
+})
+
+showAll.addEventListener('click', () => {
+  cardsOnDom(students);
+})
