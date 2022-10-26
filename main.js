@@ -10,11 +10,7 @@ const sortButton = document.querySelector('#sort-me');
 const form = document.querySelector('#formContainer');
 const expelledCards = document.querySelector('#expelledContainer')
 const submitButton = document.querySelector('#submit')
-const slytherin = document.querySelector('#slytherin');
-const gryffindor = document.querySelector('#gryffindor');
-const hufflepuff = document.querySelector('#hufflepuff');
-const ravenclaw = document.querySelector('#ravenclaw');
-const showAll = document.querySelector('#showAll');
+const filterButtons = document.querySelector('#buttons');
 
 // FUNCTIONS
 const renderToDom = (divId, htmlToRender) => {
@@ -25,11 +21,11 @@ const renderToDom = (divId, htmlToRender) => {
 const cardsOnDom = (array) => {
   let domString = "";
   for (const member of array) {
-    domString += `<div class="card" style="width: 18rem;">
+    domString += `<div class="card text-center ${member.house}" style="width: 12rem;">
     <div class="card-body">
-      <p class="card-text">${member.name}</p>
-      <p class="card-text">${member.house}</p>
-      <button class="btn btn-danger" id="delete--${member.id}">Expel</button>
+      <h5 class="card-title">${member.name}</h5>
+      <p class="card-text">has been sorted into ${member.house}</p>
+      <button class="btn btn-dark" id="delete--${member.id}">Expel</button>
     </div>
   </div>`;
   }
@@ -39,7 +35,7 @@ const cardsOnDom = (array) => {
 const voldysArmy = (array) => {
   let domString = "";
   for (const member of array) {
-    domString += `<div class="card" style="width: 18rem;">
+    domString += `<div class="card text-white bg-dark" style="width: 14rem;">
     <div class="card-body">
       <p class="card-text">${member.name} has joined the Death Eaters!</p>
     </div>
@@ -56,6 +52,7 @@ const createStudent = (e) => {
       house: houses[Math.floor(Math.random() * houses.length)]
     }
   students.push(newStudent);
+  students.sort((a, b) => a.house.localeCompare(b.house));
   console.log(students);
   document.querySelector('#submitStudent').reset();
   renderToDom('#formContainer', "");
@@ -74,7 +71,7 @@ function filter(array, typeString) {
 
 // EVENTS
 sortButton.addEventListener('click', () => {
-  let domString = `<form id="submitStudent"><div class="form-floating mb-3 col-sm-5">
+  let domString = `<form id="submitStudent"><div class="form-floating mb-1 col-sm-5">
   <input type="text" class="form-control" id="studentName" placeholder="student name" required>
   <label for="floatingInput">Please type your name here</label>
   </div>
@@ -97,29 +94,23 @@ studentCards.addEventListener('click', (e) => {
   }
 });
 
-slytherin.addEventListener('click', () => {
-  const snakes = filter(students, 'Slytherin')
-  cardsOnDom(snakes);
-})
-
-gryffindor.addEventListener('click', () => {
-  const griffins = filter(students, 'Gryffindor')
-  cardsOnDom(griffins);
-})
-
-hufflepuff.addEventListener('click', () => {
-  const badgers = filter(students, 'Hufflepuff')
-  cardsOnDom(badgers);
-})
-
-ravenclaw.addEventListener('click', () => {
-  const ravens = filter(students, 'Ravenclaw')
-  cardsOnDom(ravens);
-})
-
-showAll.addEventListener('click', () => {
-  cardsOnDom(students);
-})
+filterButtons.addEventListener('click', (e) => {
+  if (e.target.id.includes("slytherin")) {
+    const snakes = filter(students, 'Slytherin')
+    cardsOnDom(snakes);
+  } else if (e.target.id.includes("gryffindor")) {
+    const griffins = filter(students, 'Gryffindor')
+    cardsOnDom(griffins);
+  } else if (e.target.id.includes("hufflepuff")) {
+    const badgers = filter(students, 'Hufflepuff')
+    cardsOnDom(badgers);
+  } else if (e.target.id.includes("ravenclaw")) {
+    const ravens = filter(students, 'Ravenclaw')
+    cardsOnDom(ravens);
+  } else if (e.target.id.includes("showAll")) {
+    cardsOnDom(students);
+  }
+});
 
 const startApp = () => {
   cardsOnDom(students);
