@@ -1,3 +1,75 @@
 body {
   background-color: lightsalmon;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Bitter', serif;
+}
+
+div.Slytherin {
+ background-color: #198754;
+ color: white;
+}
+
+div.Gryffindor {
+  background-color: #dc3545;
+  color: white;
+ }
+
+ div.Hufflepuff {
+  background-color: #ffc107;
+  color: black;
+ }
+
+ div.Ravenclaw {
+  background-color: #0d6efd;
+  color: white;
+ }
+
+ .sorting-hat {
+  margin-top: 25px;
+  margin-bottom: 20px;
+ }
+
+ #buttons {
+  text-align: center;
+  margin-bottom: 15px;
+  margin-top: 15px;
+ }
+
+ #buttons > button {
+  margin: 0 5px;
+ }
+
+.column {
+  flex: 50%;
+  justify-content: center;
+  text-align: center;
+}
+
+.all-cards {
+  margin-bottom: 25px;
+  margin: 0 10px 25px 10px;
+}
+
+div#studentContainer.cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+div#expelledContainer.cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+form#submitStudent {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+h5 {
+  margin-top: 10px;
 }
