@@ -31,13 +31,13 @@ div.Gryffindor {
   margin-bottom: 20px;
  }
 
- #buttons {
+ #filters {
   text-align: center;
   margin-bottom: 15px;
   margin-top: 15px;
  }
 
- #buttons > button {
+ #filters > button {
   margin: 0 5px;
  }
 
