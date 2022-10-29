@@ -43,11 +43,19 @@ const voldysArmy = (array) => {
   }
   renderToDom("#expelledContainer", domString);
 }
+const createId = (array) => {
+  if (array.length) {
+    const idArray = array.map(el => el.id);
+    return Math.max(...idArray) + 1;
+  } else {
+    return 0;
+  }
+}
 
 const createStudent = (e) => {
   e.preventDefault();
     const newStudent = {
-      id: students.length + 1,
+      id: createId(students),
       name: document.querySelector('#studentName').value,
       house: houses[Math.floor(Math.random() * houses.length)]
     }
