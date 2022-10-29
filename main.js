@@ -10,7 +10,6 @@ const sortButton = document.querySelector('#sort-me');
 const form = document.querySelector('#formContainer');
 const expelledCards = document.querySelector('#expelledContainer')
 const submitButton = document.querySelector('#submit')
-const filterButtons = document.querySelector('#buttons');
 
 // FUNCTIONS
 const renderToDom = (divId, htmlToRender) => {
@@ -102,27 +101,26 @@ studentCards.addEventListener('click', (e) => {
   }
 });
 
-filterButtons.addEventListener('click', (e) => {
-  if (e.target.id.includes("slytherin")) {
-    const snakes = filter(students, 'Slytherin')
-    cardsOnDom(snakes);
-  } else if (e.target.id.includes("gryffindor")) {
-    const griffins = filter(students, 'Gryffindor')
-    cardsOnDom(griffins);
-  } else if (e.target.id.includes("hufflepuff")) {
-    const badgers = filter(students, 'Hufflepuff')
-    cardsOnDom(badgers);
-  } else if (e.target.id.includes("ravenclaw")) {
-    const ravens = filter(students, 'Ravenclaw')
-    cardsOnDom(ravens);
-  } else if (e.target.id.includes("showAll")) {
-    cardsOnDom(students);
-  }
-});
+//updated filter
+const filterRow = () => {
+  const filters = document.querySelector("#filters");
+
+  filters.addEventListener('click', (e) => {
+    if(e.target.id.includes("filter--")) {
+      const [, id] = e.target.id.split('--');
+
+      const numId = Number(id);
+      
+      const filteredHouses = students.filter(student => student.house === houses[numId]);
+      cardsOnDom(students);
+      voldysArmy(expelledStudents);
+    }
+  })}
 
 const startApp = () => {
   cardsOnDom(students);
   cardsOnDom(expelledStudents);
+  filterRow();
 }
 
 startApp();
