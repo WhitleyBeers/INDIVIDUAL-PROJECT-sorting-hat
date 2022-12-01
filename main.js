@@ -1,7 +1,7 @@
 console.log('Here we go!');
 
 const students = [];
-const houses = ['Gryffindor', 'Ravenclaw', 'Slytherin', 'Hufflepuff'];
+const houses = ['Slytherin', 'Gryffindor', 'Hufflepuff', 'Ravenclaw'];
 const expelledStudents = [];
 
 // QUERY SELECTORS
@@ -112,6 +112,9 @@ const filterRow = () => {
       const numId = Number(id);
       
       const filteredHouses = students.filter(student => student.house === houses[numId]);
+      cardsOnDom(filteredHouses);
+      voldysArmy(expelledStudents);
+    } else if(e.target.id.includes("showAll")) {
       cardsOnDom(students);
       voldysArmy(expelledStudents);
     }
@@ -119,7 +122,7 @@ const filterRow = () => {
 
 const startApp = () => {
   cardsOnDom(students);
-  cardsOnDom(expelledStudents);
+  voldysArmy(expelledStudents);
   filterRow();
 }
 
