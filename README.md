@@ -4,9 +4,6 @@ I created an app that sorts people into a random Hogwarts house.  Click the "Sor
 
 [View App](https://wbeers-sorting-hat.netlify.app/)
 
-## Get Started
-![image](https://user-images.githubusercontent.com/112125700/198752200-a2d94a05-247c-48a4-95df-3b98e58c335f.png)
-
 ## About the User <!-- This is a scaled down user persona -->
 - The ideal user for this application is a group that needs to split themselves into random teams.
 - This could be useful for events like trivia, scavenger hunts, or any other game that requires different teams.
@@ -26,10 +23,13 @@ I created an app that sorts people into a random Hogwarts house.  Click the "Sor
 - [Wireframes](https://user-images.githubusercontent.com/29741570/164943525-d20275be-c312-42d1-9730-0c1fd3fd9834.png)
 - [Project Board](https://docs.google.com/presentation/d/15EB_vlJ5zShaHKd21rWa9nBjvYSv119Wu2xG5Ydj3rw/edit#slide=id.g172ed2e48cd_0_16)
 
+## Code Snippet
+![image](https://user-images.githubusercontent.com/112125700/198752200-a2d94a05-247c-48a4-95df-3b98e58c335f.png)
+
 ## Project Screenshots <!-- These can be inside of your project. Look at the repos from class and see how the images are included in the readme -->
 ![image](https://user-images.githubusercontent.com/112125700/198752689-99afe77c-c8fe-45c1-846a-612ef5c7da11.png)
 ![image](https://user-images.githubusercontent.com/112125700/198752708-ad856d02-ed11-4475-a156-8745a028909c.png)
 ![image](https://user-images.githubusercontent.com/112125700/198752728-b069ee5f-4fff-436e-9110-a44c9bfb0e10.png)
 
 ## Contributors
-- Whitley Beers (https://github.com/WhitleyBeers)
+- [Whitley Beers](https://github.com/WhitleyBeers)
